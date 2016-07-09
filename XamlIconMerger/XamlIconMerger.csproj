@@ -47,7 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Filesystem\ResourceAppenderFileOutputTarget.cs" />
+    <Compile Include="Filesystem\ElementDuplicationPolicy.cs" />
+    <Compile Include="Filesystem\FileLazyTextReaderProvider.cs" />
+    <Compile Include="Filesystem\FileTextWriterLazyProvider.cs" />
+    <Compile Include="Filesystem\IAppendNodeExtractor.cs" />
+    <Compile Include="Filesystem\ILazyTextReaderProvider.cs" />
+    <Compile Include="Filesystem\ILazyTextWriterProvider.cs" />
+    <Compile Include="Filesystem\LogTextWriterLazyProvider.cs" />
+    <Compile Include="Filesystem\RegionAppendNodeExtractor.cs" />
+    <Compile Include="Filesystem\ResourceAppenderOutputTarget.cs" />
+    <Compile Include="Filesystem\StringLazyTextReaderProvider.cs" />
+    <Compile Include="Filesystem\XamlAppender.cs" />
     <Compile Include="Messages\DebugLoggingService.cs" />
     <Compile Include="DebugOutputTarget.cs" />
     <Compile Include="GlobalFactory.cs" />
