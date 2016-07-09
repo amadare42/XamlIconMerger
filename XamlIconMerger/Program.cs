@@ -1,15 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using CommandLine;
+using XamlIconMerger.Messages;
 
 namespace XamlIconMerger
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            Parser.Default.ParseArguments<RunArguments>(args)
+                .WithParsed(RunApp);
+        }
+
+        public static void RunApp(RunArguments args)
+        {
+            ILoggingService loggingService = new ConsoleLoggingService();
+            var factory = new GlobalFactory(loggingService);
+            var fetcher = factory.CreateDefaultFileFetcher();
+            var merger = factory.CreateDefaultTextMerger(args);
+
+            try
+            {
+                var files = fetcher.GetFilesList(args);
+                merger.Merge(files);
+                Console.WriteLine("Press <Enter> to open results. Any key to exit.");
+                var key = Console.ReadKey();
+                if (key.Key == ConsoleKey.Enter)
+                {
+                    Process.Start(args.OutFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                loggingService.Error($"Exception during merge:\r\n{ex}");
+            }
         }
     }
 }

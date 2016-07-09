@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{78664CDA-C8B2-4DA5-ACDD-64F2CDC351CB}</ProjectGuid>
+    <ProjectGuid>{C108BAC1-A356-4DD6-90CA-EC25C08D85FD}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XamlIconMerger</RootNamespace>
@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommandLine, Version=2.0.275.0, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommandLineParser.2.0.275-beta\lib\net45\CommandLine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,12 +47,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filesystem\ResourceAppenderFileOutputTarget.cs" />
+    <Compile Include="Messages\DebugLoggingService.cs" />
+    <Compile Include="DebugOutputTarget.cs" />
+    <Compile Include="GlobalFactory.cs" />
+    <Compile Include="Filesystem\WriteToFileOutputTarget.cs" />
+    <Compile Include="Messages\IMessagesBlock.cs" />
+    <Compile Include="Mutators\IXmlMutator.cs" />
+    <Compile Include="Mutators\Text\AddPrefixToAttributesTextMutator.cs" />
+    <Compile Include="Mutators\Xml\KeyAddingMutator.cs" />
+    <Compile Include="Mutators\Xml\TagExtractor.cs" />
+    <Compile Include="Mutators\IMutator.cs" />
+    <Compile Include="Mutators\TextMutatorChain.cs" />
+    <Compile Include="Mutators\XmlMutatorChain.cs" />
+    <Compile Include="StringElementSource.cs" />
+    <Compile Include="XmlHelpers\PrettyXmlFormatter.cs" />
+    <Compile Include="TextMerger.cs" />
+    <Compile Include="Messages\ILoggingService.cs" />
+    <Compile Include="IElementSource.cs" />
+    <Compile Include="Filesystem\IFileFetchOptions.cs" />
+    <Compile Include="Filesystem\FileElementSource.cs" />
+    <Compile Include="IOutputTarget.cs" />
+    <Compile Include="Mutators\MutatorChain.cs" />
+    <Compile Include="Mutators\Text\MatchIdentifier.cs" />
+    <Compile Include="Messages\ConsoleLoggingService.cs" />
+    <Compile Include="Filesystem\DefaultFileToKeyConverter.cs" />
+    <Compile Include="Filesystem\FileFetcher.cs" />
+    <Compile Include="Infrastructure\ErrorHandlingPolicy.cs" />
+    <Compile Include="Mutators\ITextMutator.cs" />
+    <Compile Include="Filesystem\IFileToKeyConverter.cs" />
+    <Compile Include="Mutators\Text\RegexpTextCleaner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RunArguments.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
